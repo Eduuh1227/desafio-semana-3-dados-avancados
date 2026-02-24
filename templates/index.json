@@ -7,5 +7,5 @@
             }
         },
     },
-    "order": ["main"]
+    "order": ["metaobject-slider"]
 }
