@@ -1,0 +1,11 @@
+{
+    "sections": {
+
+        "metaobject": {
+            "type": "metaobject-slider",
+            "settings": {
+            }
+        },
+    },
+    "order": ["main"]
+}
