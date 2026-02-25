@@ -1,9 +1,13 @@
+{{ 'metaobject-slider.css' | asset_url | stylesheet_tag }}
+<script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+
 {% assign product_handle = section.settings.product %}
 {% assign product = all_products[product_handle] %}
 
 <h1>{{ product.title }}</h1>
 
-{%  assign list_products =  product.metafields.custom.list_banner_with_product.value %} 
+{% assign list_products = product.metafields.custom.list_banner_with_product.value %}
+
 
 
 {% if list_products %}
@@ -12,21 +16,18 @@
   href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"
 />
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
-
-
 <div class="swiper">
-
   <div class="swiper-wrapper">
     {% for product_with_banner in list_products %}
-        {%  assign banner = product_with_banner.banner %}
-        {%  assign product_b_handle = product_with_banner.produto %} 
-        {%  assign product_b = all_products[product_b_handle] %} %}
-        <div class="swiper-slide">
-            <img src="{{ banner | image_url: width: '300px' }}" width="300px" height="auto">
-            <h2> {{ product_b.title }}</h2>
-        </div> 
-    {% endfor %}
+      {% assign banner = product_with_banner.banner %}
+      {% assign product_b_handle = product_with_banner.produto %}
+      {% assign product_b = all_products[product_b_handle] %}
+    <div class="swiper-slide">
+        <img src="{{ banner |  image_url: width: '300px'  }}" width="300px" height="auto">
+        <h2>{{ product_b.title }}</h2>
+    </div>
+     {% endfor %}
+    
   </div>
   
   <div class="swiper-pagination"></div>
@@ -51,10 +52,11 @@
   align-items: center;
   justify-content: center;
 }
+
 </style>
 
-<script>
 
+<script>
   const swiper = new Swiper('.swiper', {
   
   direction: 'horizontal',
@@ -65,7 +67,7 @@
     el: '.swiper-pagination',
   },
 
-  
+ 
   navigation: {
     nextEl: '.swiper-button-next',
     prevEl: '.swiper-button-prev',
@@ -79,11 +81,12 @@
 
 </script>
 
-    {% endif %}
+{% endif %}
+
 
 {% schema %}
   {
-    "name": "Sliders",
+    "name": "metaobject-slider",
     "settings": [{
         "type": "product",
         "id": "product",
