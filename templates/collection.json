@@ -1,7 +1,7 @@
 {
     "sections": {
         "main": {
-            "type": "product-section-class"
+            "type": "collection-section-class"
         }
     },
     "order": ["main"]

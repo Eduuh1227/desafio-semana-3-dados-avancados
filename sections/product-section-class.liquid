@@ -2,4 +2,13 @@
 
 {% assign products_relateds = product.metafields.custom.produtos_relacionados.value %}
 
-{{ products_relateds | json }}
+
+
+{% if products_relateds %}
+
+    {% for product_related in products_relateds %}
+        <h2>{{ product_related.title }}</h2>
+        {{ product_related | json }}
+        <h3>{{ product.description }}</h3>
+    {% endfor %}
+{% endif %}
