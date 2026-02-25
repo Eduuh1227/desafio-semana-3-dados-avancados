@@ -1,99 +1,99 @@
-{{ 'metaobject-slider.css' | asset_url | stylesheet_tag }}
-  <script src="{{ 'metaobject-slider.js' | asset_url }}"></script>
+{% assign product_handle = section.settings.product %}
+{% assign product = all_products[product_handle] %}
+
+<h1>{{ product.title }}</h1>
+
+{%  assign list_products =  product.metafields.custom.list_banner_with_product.value %} 
 
 
-    <header>
-    <h1> {{ page.title }} </h1>
-  <div>{{ page.content }}</div>
-  </header>
+{% if list_products %}
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"
+/>
 
-    <section>
-        <hr>
-
-
-    {% assign product_related = product.metafield.custom.produtos_relacionados %}
-
-    <h1>{{ product_related | json }}</h1>
-
-    
+<script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
 
 
-    {% comment %} 
-    {% assign featured_product = section.settings.main_product %}
+<div class="swiper">
 
-        <div class="featured-product">
-
-        <h2>{{ featured_product.title }}</h2> 
-        
-        <p class="price">{{ featured_product.price | money }}</p> 
-        <img src="{{ featured_product.featured_image | img_url: 'medium' }}" alt="{{ featured_product.title }}"> 
-        <a href="{{ featured_product.url }}" class="btn">Ver produto</a> 
-
-    </div>
-{% endcomment %}
-<hr>
-
-
-
-<div class="collection-list">
-
-  {% assign selected_collection = section.settings.all_collections %}
-
-  {% if selected_collection != blank %}
-
-    <div class="products-grid">
-
-      {% for product in selected_collection.products %}
-
-        <div class="product-card">
-          <img 
-            src="{{ product.featured_image | image_url: width: 400 }}" 
-            alt="{{ product.title }}">
-
-          <h3>{{ product.title }}</h3>
-          <p class="price">{{ product.price | money }}</p>
-
-          <a class="btn" href="{{ product.url }}">
-            Comprar
-          </a>
-        </div>
-
-      {% endfor %}
-
-    </div>
-
-  {% endif %}
-
-</div>
+  <div class="swiper-wrapper">
+    {% for product_with_banner in list_products %}
+        {%  assign banner = product_with_banner.banner %}
+        {%  assign product_b_handle = product_with_banner.produto %} 
+        {%  assign product_b = all_products[product_b_handle] %} %}
+        <div class="swiper-slide">
+            <img src="{{ banner | image_url: width: '300px' }}" width="300px" height="auto">
+            <h2> {{ product_b.title }}</h2>
+        </div> 
+    {% endfor %}
+  </div>
   
-    </section>
+  <div class="swiper-pagination"></div>
 
+  
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
 
+  
+  <div class="swiper-scrollbar"></div>
+</div>
 
-
-
-
-{% schema %}
-{
-    "name": "metaobject-slider",
-    "settings": [
-
-        {
-            "type": "product",
-            "id": "main_product",
-            "label": "Produto Principal"
-        },
-            {
-                "type": "collection",
-                "id": "all_collections",
-                "label": "Loções"
-            }
-        ],
-        "presets": [
-            {
-                "name": "metaobject-slider"
-            }
-        ]
+<style>
+  .swiper {
+  width: 600px;
+  height: 500px;
 }
 
- {% endschema %}
+.swiper-slide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+</style>
+
+<script>
+
+  const swiper = new Swiper('.swiper', {
+  
+  direction: 'horizontal',
+  loop: true,
+
+  
+  pagination: {
+    el: '.swiper-pagination',
+  },
+
+  
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+
+  
+  scrollbar: {
+    el: '.swiper-scrollbar',
+  },
+});
+
+</script>
+
+    {% endif %}
+
+{% schema %}
+  {
+    "name": "Sliders",
+    "settings": [{
+        "type": "product",
+        "id": "product",
+        "label": "Product"
+        
+    }
+  ],
+    "presets": [
+
+    ]
+  }
+
+  {% endschema %}

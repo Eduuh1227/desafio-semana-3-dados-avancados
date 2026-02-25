@@ -1,8 +1,8 @@
 {
     "sections": {
-        "main": {
+        "metaobject": {
             "type": "collection-section-class"
         }
     },
-    "order": ["main"]
+    "order": ["metaobject"]
 }
