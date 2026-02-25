@@ -1,5 +1,7 @@
 {{ 'metaobject-slider.css' | asset_url | stylesheet_tag }}
-    
+  <script src="{{ 'metaobject-slider.js' | asset_url }}"></script>
+
+
     <header>
     <h1> {{ page.title }} </h1>
   <div>{{ page.content }}</div>
@@ -8,6 +10,15 @@
     <section>
         <hr>
 
+
+    {% assign product_related = product.metafield.custom.produtos_relacionados %}
+
+    <h1>{{ product_related | json }}</h1>
+
+    
+
+
+    {% comment %} 
     {% assign featured_product = section.settings.main_product %}
 
         <div class="featured-product">
@@ -19,7 +30,7 @@
         <a href="{{ featured_product.url }}" class="btn">Ver produto</a> 
 
     </div>
-
+{% endcomment %}
 <hr>
 
 

@@ -1,0 +1,5 @@
+<h1> {{ product.title }} </h1>
+
+{% assign products_relateds = product.metafields.custom.produtos_relacionados %}
+
+{{ products_relateds | json }}
