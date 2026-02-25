@@ -1,8 +1,8 @@
 {
     "sections": {
-        "main": {
+        "metaobject": {
             "type": "product-section-class"
         }
     },
-    "order": ["main"]
+    "order": ["metaobject"]
 }

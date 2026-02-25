@@ -1,5 +1,5 @@
 <h1> {{ product.title }} </h1>
 
-{% assign products_relateds = product.metafields.custom.produtos_relacionados %}
+{% assign products_relateds = product.metafields.custom.produtos_relacionados.value %}
 
 {{ products_relateds | json }}
