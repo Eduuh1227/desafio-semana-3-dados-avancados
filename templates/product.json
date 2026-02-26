@@ -1,8 +1,9 @@
 {
     "sections": {
-        "metaobject": {
-            "type": "metaobject-slider"
+
+        "serum": {
+            "type": "serum-corporal-ouro"
         }
     },
-    "order": ["metaobject"]
+    "order": ["serum"]
 }
