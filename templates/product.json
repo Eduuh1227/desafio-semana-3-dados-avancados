@@ -1,0 +1,9 @@
+{
+    "sections": {
+
+        "serum": {
+            "type": "serum-corporal-ouro"
+        }
+    },
+    "order": ["serum"]
+}

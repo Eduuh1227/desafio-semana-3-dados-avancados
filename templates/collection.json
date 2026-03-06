@@ -1,0 +1,8 @@
+{
+    "sections": {
+        "metaobject": {
+            "type": "metaobject-slider"
+        }
+    },
+    "order": ["metaobject"]
+}
